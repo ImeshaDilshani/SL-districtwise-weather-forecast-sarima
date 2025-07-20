@@ -1,0 +1,182 @@
+# Load required libraries
+library(forecast)
+library(tseries)
+
+# Load the dataset
+# Download the dataset from the link: https://datamarket.com/data/set/22u3/monthly-airline-passengers-in-thousands-1949-1960
+# Save it as 'AirPassengers.csv' in your working directory
+# Set the working directory to where your CSV file is saved
+
+
+data <- read.csv("airline-passengers.csv")
+
+# View the data structure
+head(data)
+data
+plot(data$Passengers)
+
+library(tseries)
+# Convert data to a time series object
+# Assuming the data set has columns 'Month' and 'Passengers'
+data_ts <- ts(data$Passengers, start = c(1949, 1), frequency = 12)
+data_ts
+# Plot the time series
+plot(data_ts, main = "Airline Passenger Data", ylab = "Passengers", xlab = "Year", col = "blue", lwd = 2)
+
+# Check for stationary using Augmented Dickey-Fuller Test, pp-test and KPSS test
+adf_test <- adf.test(data_ts, alternative = "stationary")
+print(adf_test)
+print(pp.test(data_ts))
+print(kpss.test(data_ts))
+
+# Differencing the data to make it stationary
+data_diff <- diff(data_ts, differences = 1)
+plot(data_diff)
+
+# Check stationary again
+adf_test_diff <- adf.test(data_diff, alternative = "stationary")
+print(adf_test_diff)
+print(pp.test(data_diff))
+print(kpss.test(data_diff))
+
+# Plot ACF and PACF to determine ARIMA parameters
+par(mfrow = c(1,2))
+acf(data_diff, main = "ACF of Differenced Data")
+pacf(data_diff, main = "PACF of Differenced Data")
+acf(data_diff, main = "ACF")
+pacf(data_diff, main = "PACF")
+
+#FIt models
+?Arima
+model1 <- Arima(data_ts, order=c(0,1,1))  
+summary(model1)
+model2 <- Arima(data_ts, order=c(1,1,1))
+summary(model2)
+model3 <- Arima(data_ts, order=c(2,1,1))
+summary(model3)
+model4<-Arima(data_ts, order=c(0,1,2))
+summary(model4)
+
+arima_model <- auto.arima(data_ts)
+summary(arima_model)
+accuracy(arima_model)
+
+checkresiduals(model3)
+# Compare AIC values
+AIC(model1, model2, model3, model4)
+# Compare BIC values
+BIC(model1, model2, model3, model4)# Fit ARIMA model
+arima_model <- auto.arima(data_ts)
+
+forecasted <- forecast(model3, h = 24)
+plot(forecasted, main = "Forecast for Airline Passengers", col = "blue")
+
+
+# Display the ARIMA model summary
+summary(arima_model)
+
+# Plot diagnostics
+checkresiduals(arima_model)
+
+# Forecast the next 24 months
+forecasted <- forecast(arima_model, h = 36)
+
+par(mfrow = c(1,1))
+# Plot the forecast
+plot(forecasted, main = "Forecast for Airline Passengers", col = "blue")
+
+# Save the forecast to a CSV file
+write.csv(data.frame(Date = time(forecasted$mean), Forecast = forecasted$mean), "AirPassenger_Forecast.csv")
+
+
+
+
+data_diff <- diff(data_ts, differences = 2)
+plot(data_diff)
+
+model1 <- Arima(data_ts, order=c(0,2,1))  
+summary(model1)
+
+
+
+
+
+# Simulate a bivariate time series with a known covariance structure
+set.seed(123)
+n <- 500
+mu <- c(0, 0)  # Mean vector
+sigma <- matrix(c(1, 0.8, 0.8, 1), 2, 2)  # Covariance matrix
+
+# Simulating the multivariate normal data
+library(MASS)
+data <- mvrnorm(n, mu, sigma)
+
+# Plot the data
+plot(data[, 1], data[, 2], main = "Bivariate Time Series", xlab = "Series 1", ylab = "Series 2")
+
+
+
+
+#Example
+
+# Simulate multivariate ARMA data
+set.seed(123)
+n <- 500
+# AR(1) and MA(1) processes for two series
+phi <- matrix(c(0.5, 0.3, -0.4, 0.6), 2, 2)  # AR coefficients
+theta <- matrix(c(0.2, -0.5, 0.1, 0.3), 2, 2)  # MA coefficients
+epsilon <- matrix(rnorm(2 * n), nrow = n)
+
+# Generate time series data
+Y <- matrix(0, nrow = n, ncol = 2)
+for (t in 2:n) {
+  Y[t,] <- phi %*% Y[t-1,] + theta %*% epsilon[t-1,] + epsilon[t,]
+}
+Y
+
+# Fit a VAR model (Multivariate AR model)
+library(tsDyn)
+library(vars)
+library(forecast)
+
+colnames(data_ts) <- c("Series1", "Series2")  # Change names based on your data
+
+# Check if column names are set
+colnames(data_ts)
+var_model <- VAR(data_ts, p = 1)  # p = 1 is the order of the VAR model
+summary(var_model)
+forecasted_values <- forecast(var_model, h = 10)
+
+
+
+varma_model <- VARMA(data_ts, p = 1, q = 1)  # p and q are the AR and MA orders
+summary(varma_model)
+
+
+
+
+
+
+# Example
+install.packages("tsDyn")
+install.packages("readxl")
+
+# Load libraries
+library(tsDyn)
+library(readxl)
+library(MTS)
+setwd("D:/MSC Statistics")
+
+data <- read_excel("multivariate_arma_dataset.xlsx")
+
+# Check the first few rows of the data
+head(data)
+
+# Convert data to time series format
+data_ts <- ts(data, frequency = 1)  # Assuming the data is not seasonal
+data_ts
+
+# Fit a VARMA model (ARMA with VAR components)
+# p is the order of the autoregressive part, q is the order of the moving average part
+varma_model <- varma(data_ts, p = 1, q = 1)  # Adjust p and q as needed
+summary(varma_model)

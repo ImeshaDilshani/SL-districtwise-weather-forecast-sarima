@@ -1,0 +1,103 @@
+$`Data Dimensions`
+[1] 142371     28
+
+$`Date Range`
+[1] "2010-01-01" "2024-06-08"
+
+$`Districts Analyzed`
+[1] 27
+
+$`Missing Values (Original)`
+                    location_id                            date         weather_code_(wmo_code) 
+                              0                               0                               0 
+         temperature_2m_max_(C)          temperature_2m_min_(C)         temperature_2m_mean_(C) 
+                              0                               0                               0 
+   apparent_temperature_max_(C)    apparent_temperature_min_(C)   apparent_temperature_mean_(C) 
+                              0                               0                               0 
+          daylight_duration_(s)           sunshine_duration_(s)          precipitation_sum_(mm) 
+                              0                               0                               0 
+                  rain_sum_(mm)         precipitation_hours_(h)       wind_speed_10m_max_(km/h) 
+                              0                               0                               0 
+      wind_gusts_10m_max_(km/h)  wind_direction_10m_dominant_() shortwave_radiation_sum_(MJ/m²) 
+                              0                               0                               0 
+et0_fao_evapotranspiration_(mm)                         sunrise                          sunset 
+                              0                               0                               0 
+                           year                           month                             day 
+                              0                               0                               0 
+                        quarter                            week                     day_of_year 
+                              0                               0                               0 
+                      city_name 
+                              0 
+
+$`Missing Values (After Cleaning)`
+                    location_id                            date         weather_code_(wmo_code) 
+                              0                               0                               0 
+         temperature_2m_max_(C)          temperature_2m_min_(C)         temperature_2m_mean_(C) 
+                              0                               0                               0 
+   apparent_temperature_max_(C)    apparent_temperature_min_(C)   apparent_temperature_mean_(C) 
+                              0                               0                               0 
+          daylight_duration_(s)           sunshine_duration_(s)          precipitation_sum_(mm) 
+                              0                               0                               0 
+                  rain_sum_(mm)         precipitation_hours_(h)       wind_speed_10m_max_(km/h) 
+                              0                               0                               0 
+      wind_gusts_10m_max_(km/h)  wind_direction_10m_dominant_() shortwave_radiation_sum_(MJ/m²) 
+                              0                               0                               0 
+et0_fao_evapotranspiration_(mm)                         sunrise                          sunset 
+                              0                               0                               0 
+                           year                           month                             day 
+                              0                               0                               0 
+                        quarter                            week                     day_of_year 
+                              0                               0                               0 
+                      city_name 
+                              0 
+
+$`Outliers Detected`
+                          Variable Outlier_Count Outlier_Percentage
+1          weather_code_(wmo_code)         30271              21.26
+2           temperature_2m_max_(C)          6814               4.79
+3           temperature_2m_min_(C)          9867               6.93
+4          temperature_2m_mean_(C)          9499               6.67
+5     apparent_temperature_max_(C)          4900               3.44
+6     apparent_temperature_min_(C)         11004               7.73
+7    apparent_temperature_mean_(C)          9300               6.53
+8            daylight_duration_(s)             0               0.00
+9            sunshine_duration_(s)         14018               9.85
+10          precipitation_sum_(mm)         12986               9.12
+11                   rain_sum_(mm)         12986               9.12
+12         precipitation_hours_(h)             0               0.00
+13       wind_speed_10m_max_(km/h)          2181               1.53
+14       wind_gusts_10m_max_(km/h)          1698               1.19
+15  wind_direction_10m_dominant_()             0               0.00
+16 shortwave_radiation_sum_(MJ/m²)          3881               2.73
+17 et0_fao_evapotranspiration_(mm)          1403               0.99
+
+$`Stationarity Tests`
+         District ADF_Temp_pvalue ADF_Rain_pvalue
+1          Ampara           0.010            0.01
+2    Anuradhapura           0.010            0.01
+3         Badulla           0.010            0.01
+4     Bandarawela           0.010            0.01
+5      Batticaloa           0.010            0.01
+6         Colombo           0.010            0.01
+7           Galle           0.010            0.01
+8         Gampaha           0.010            0.01
+9      Hambantota           0.010            0.01
+10         Jaffna           0.010            0.01
+11       Kalutara           0.010            0.01
+12          Kandy           0.010            0.01
+13        Kegalle           0.010            0.01
+14 Kilinochchi[1]           0.010            0.01
+15     Kurunegala           0.010            0.01
+16         Mannar           0.010            0.01
+17         Matale           0.010            0.01
+18         Matara           0.010            0.01
+19     Moneragala           0.010            0.01
+20     Mullaitivu           0.010            0.01
+21   Nuwara Eliya           0.095            0.01
+22    Polonnaruwa           0.010            0.01
+23       Puttalam           0.010            0.01
+24      Ratnapura           0.010            0.01
+25    Trincomalee           0.010            0.01
+26       Vavuniya           0.010            0.01
+27       Welimada           0.010            0.01
+
