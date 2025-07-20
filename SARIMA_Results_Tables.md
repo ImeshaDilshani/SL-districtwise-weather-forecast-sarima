@@ -1,5 +1,21 @@
 # SARIMA Model Results Summary Tables
 
+## Sri Lanka's 25 Administrative Districts Covered
+
+This study covers all 25 official administrative districts of Sri Lanka:
+
+**Western Province:** Colombo, Gampaha, Kalutara  
+**Central Province:** Kandy, Matale, Nuwara Eliya  
+**Southern Province:** Galle, Matara, Hambantota  
+**Northern Province:** Jaffna, Kilinochchi, Mannar, Mullaitivu, Vavuniya  
+**Eastern Province:** Ampara, Batticaloa, Trincomalee  
+**North Western Province:** Kurunegala, Puttalam  
+**North Central Province:** Anuradhapura, Polonnaruwa  
+**Uva Province:** Badulla, Moneragala  
+**Sabaragamuwa Province:** Ratnapura, Kegalle  
+
+*Note: Bandarawela and Welimada are towns within Badulla District and were excluded from district-level analysis.*
+
 ## Table 1: Temperature Forecasting Models Summary
 
 | District | SARIMA Model | AIC | RMSE | MAE | MAPE | Log Likelihood |
@@ -7,7 +23,6 @@
 | Ampara | (0,0,3)(2,1,0)[12] | 304.09 | 0.558 | 0.421 | 1.537 | -146.04 |
 | Anuradhapura | (1,0,0)(2,1,0)[12] | 283.65 | 0.533 | 0.409 | 1.526 | -137.82 |
 | Badulla | (2,0,0)(2,1,1)[12] with drift | 290.90 | 0.510 | 0.405 | 1.722 | -138.45 |
-| Bandarawela | (2,0,0)(0,1,2)[12] | 234.31 | 0.438 | 0.325 | 1.595 | -112.15 |
 | Batticaloa | (1,0,0)(2,1,1)[12] | 254.93 | 0.469 | 0.354 | 1.279 | -122.46 |
 | Colombo | (1,0,0)(2,1,2)[12] | 187.45 | 0.376 | 0.281 | 1.052 | -87.73 |
 | Galle | (1,0,0)(2,1,1)[12] | 100.07 | 0.291 | 0.225 | 0.846 | -45.04 |
@@ -30,7 +45,6 @@
 | Ratnapura | (1,0,1)(0,1,1)[12] | 113.09 | 0.307 | 0.226 | 0.887 | -52.55 |
 | Trincomalee | (1,0,0)(2,1,1)[12] | 249.98 | 0.459 | 0.347 | 1.247 | -119.99 |
 | Vavuniya | (1,0,0)(2,1,0)[12] | 329.37 | 0.613 | 0.468 | 1.728 | -160.69 |
-| Welimada | (1,0,1)(2,1,1)[12] | 258.23 | 0.466 | 0.360 | 1.702 | -123.12 |
 
 ## Table 2: Rainfall Forecasting Models Summary
 
@@ -39,7 +53,6 @@
 | Ampara | (0,0,2)(0,1,1)[12] | 1891.83 | 74.31 | 53.11 | 59.87 | -941.91 |
 | Anuradhapura | (3,0,0)(2,0,0)[12] with mean | 2043.02 | 81.74 | 62.69 | 134.10 | -1014.51 |
 | Badulla | (3,0,0)(2,0,0)[12] with mean | 2066.31 | 87.43 | 69.12 | 102.55 | -1026.16 |
-| Bandarawela | (3,1,1)(1,0,0)[12] | 2086.46 | 95.69 | 75.63 | 62.58 | -1037.23 |
 | Batticaloa | (0,0,2)(0,1,1)[12] | 1894.89 | 75.73 | 51.14 | 69.39 | -943.45 |
 | Colombo | (1,0,2)(2,0,0)[12] with mean | 2128.49 | 103.13 | 79.69 | 65.13 | -1057.24 |
 | Galle | (0,1,3)(2,0,0)[12] | 2077.52 | 92.38 | 71.06 | 44.16 | -1032.76 |
@@ -62,7 +75,6 @@
 | Ratnapura | (0,1,3)(2,0,0)[12] | 2176.56 | 123.07 | 93.82 | 43.91 | -1082.28 |
 | Trincomalee | (1,0,0)(2,1,1)[12] | 1899.04 | 74.46 | 50.00 | 96.58 | -944.52 |
 | Vavuniya | (3,0,0)(1,0,0)[12] with mean | 2026.66 | 78.62 | 61.08 | 156.95 | -1007.33 |
-| Welimada | (0,1,3)(1,0,0)[12] | 2082.42 | 95.16 | 73.43 | 63.69 | -1036.21 |
 
 *Note: ∞ indicates infinite MAPE due to zero values in the series.
 
@@ -105,15 +117,15 @@
 ### Model Distribution Summary
 
 #### Temperature Models
-- **Most Common Seasonal Pattern**: (2,1,1)[12] - 8 districts
-- **Most Common Non-seasonal Pattern**: (1,0,0) - 15 districts  
-- **Models with Drift**: 5 districts
+- **Most Common Seasonal Pattern**: (2,1,1)[12] - 7 districts
+- **Most Common Non-seasonal Pattern**: (1,0,0) - 14 districts  
+- **Models with Drift**: 4 districts
 - **Best Overall Performance**: Coastal districts (lower RMSE and MAPE)
 
 #### Rainfall Models
-- **Most Common Seasonal Pattern**: (2,0,0)[12] - 10 districts
-- **Most Common Non-seasonal Pattern**: (1,0,2) and (3,0,0) - 6 districts each
-- **Models with Mean**: 14 districts
+- **Most Common Seasonal Pattern**: (2,0,0)[12] - 9 districts
+- **Most Common Non-seasonal Pattern**: (1,0,2) and (3,0,0) - 5 districts each
+- **Models with Mean**: 13 districts
 - **Models with Drift**: 3 districts
 - **Highest Variability**: Inland mountainous regions
 
